@@ -1,0 +1,20 @@
+---
+    const {title} = Astro.props
+---
+
+<section>
+    {title && <h2>title</h2>}
+    <slot />
+</section>
+
+<style>
+
+    section {
+        background-color: red;
+    }
+
+    h2 {
+        color: green;
+    }
+
+</style>
