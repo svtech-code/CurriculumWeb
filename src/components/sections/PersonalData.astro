@@ -2,18 +2,45 @@
 import Section from "@/components/Section.astro";
 import {personalData} from "@cv";
 
-const {name, label} = personalData;
+const {name, label, image, location} = personalData;
+const {city, country} = location;
 
 ---
 
 <Section>
-    <div>
-        <div>
+    <div class="container">
+        <div class="mainInfo">
             <h1>{name}</h1>
             <h2>{label}</h2>
+
+            <span>
+                {city}. {country}
+            </span>
+
         </div>
     </div>
 
 
 
 </Section>
+
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-weight: 500;
+        font-size: 1.1rem;
+        text-wrap: balance;
+    }
+</style>

@@ -2,7 +2,7 @@
 import KeyboardManager from '@/components/KeyboardManager.astro';
 import PersonalData from '@/components/sections/PersonalData.astro';
 import Layout from '@/layouts/Layout.astro';
-import personalData from "@/components/sections/PersonalData.astro";
+import {personalData} from "@cv";
 
 const {name} = personalData;
 ---
@@ -17,5 +17,11 @@ const {name} = personalData;
 </Layout>
 
 <style>
+
+	main {
+		padding: 3rem;
+		margin: auto;
+		width: 100%;
+	}
 	
 </style>
