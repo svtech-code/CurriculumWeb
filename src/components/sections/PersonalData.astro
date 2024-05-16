@@ -1,0 +1,19 @@
+---
+import Section from "@/components/Section.astro";
+import {personalData} from "@cv";
+
+const {name, label} = personalData;
+
+---
+
+<Section>
+    <div>
+        <div>
+            <h1>{name}</h1>
+            <h2>{label}</h2>
+        </div>
+    </div>
+
+
+
+</Section>
