@@ -1,5 +1,6 @@
 ---
 import KeyboardManager from '@/components/KeyboardManager.astro';
+import About from '@/components/sections/About.astro';
 import PersonalData from '@/components/sections/PersonalData.astro';
 import Layout from '@/layouts/Layout.astro';
 import {personalData} from "@cv";
@@ -10,6 +11,7 @@ const {name} = personalData;
 <Layout title={name}>
 	<main>
 		<PersonalData />
+		<About />
 		
 	</main>
 

@@ -107,10 +107,15 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
         text-wrap: balance;
     }
 
+    figure {
+        width: 30%;
+        min-width: 180px;
+    }
+
     img {
         aspect-ratio: 1/1;
         object-fit: cover;
-        width: 180px;
+        width: 100%;
     }
 
     span {
@@ -131,7 +136,6 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
     }
 
     footer a {
-        /* color: #777; */
         color: #045669;
         display: inline-flex;
         align-items: center;
