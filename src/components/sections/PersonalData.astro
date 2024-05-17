@@ -1,9 +1,23 @@
 ---
 import Section from "@/components/Section.astro";
 import {personalData} from "@cv";
+import World from "@/icons/World.astro";
+import Email from "@/icons/Email.astro";
+import Phone from "@/icons/Phone.astro";
+import GitHub from "@/icons/GitHub.astro";
+import LinkedIn from "@/icons/LinkedIn.astro";
 
-const {name, label, image, location} = personalData;
-const {city, country} = location;
+const {name, label, image, location, email, phone, socialNetwork} = personalData;
+const {address, country} = location;
+
+const SOCIAL_ICONS = {GitHub, LinkedIn};
+
+// script para obtener enlace de linkedIn
+const linkedInfo = socialNetwork.find(({network}) => network === "LinkedIn");
+const linkedUrl = linkedInfo.url;
+
+// lista de enlaces para mostrar al imprimir
+const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
 
 ---
 
@@ -14,14 +28,63 @@ const {city, country} = location;
             <h2>{label}</h2>
 
             <span>
-                {city}. {country}
+                <World />
+                {address}. {country}
             </span>
 
+            <footer class="print">
+                {printInfo}
+            </footer>
+
+            <footer class="notPrint">
+                {
+                    email && (
+                        <a 
+                            href={`mailto:${email}`}
+                            title={`Enviar correo electrónico a ${name} al correo ${email}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Email />
+                        </a>
+                    )
+                }
+                {
+                    phone && (
+                        <a 
+                            href={`tel:${phone}`}
+                            title={`Contactarse con ${name} al número ${phone}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Phone />
+                        </a>
+                    )
+                }
+                {
+                    socialNetwork.map(({network, userName, url}) => {
+                        const Icon = SOCIAL_ICONS[network];
+
+                        return (
+                            <a 
+                                href={url}
+                                title={`Visitar perfil de ${userName} en ${network}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Icon />
+                            </a>
+                        )
+                    })
+                }
+
+            </footer>
         </div>
+
+        <figure>
+            <img src={image} alt="Logo empresa">
+        </figure>
     </div>
-
-
-
 </Section>
 
 
@@ -43,4 +106,49 @@ const {city, country} = location;
         font-size: 1.1rem;
         text-wrap: balance;
     }
+
+    img {
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        width: 180px;
+    }
+
+    span {
+        display: flex;
+        align-items: center;
+        gap: .25rem;
+        font-size: .90rem;
+        letter-spacing: -.05rem;
+        margin-top: 2px;
+    }
+
+    footer {
+        color: #045669;
+        font-size: .65rem;
+        display: flex;
+        gap: 6px;
+        margin-top: 8px;
+    }
+
+    footer a {
+        /* color: #777; */
+        color: #045669;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #045669;
+        padding: 4px;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        transition: all .3s ease-in-out;
+    }
+
+    footer a:hover {
+        background-color: #045669;
+        color: #C0DFE6;
+        scale: 1.2;
+    }
+
+
 </style>
