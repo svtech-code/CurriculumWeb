@@ -1,9 +1,16 @@
 ---
-import KeyboardManager from '@/components/KeyboardManager.astro';
-import About from '@/components/sections/About.astro';
-import PersonalData from '@/components/sections/PersonalData.astro';
 import Layout from '@/layouts/Layout.astro';
 import {personalData} from "@cv";
+
+import PersonalData from '@/components/sections/PersonalData.astro';
+import About from '@/components/sections/About.astro';
+import Experience from '@/components/sections/Experience.astro';
+import Education from '@/components/sections/Education.astro';
+import DeveloperCapacity from '@/components/sections/DeveloperCapacity.astro';
+import WorkCapacity from '@/components/sections/WorkCapacity.astro';
+
+// import KeyboardManager from '@/components/KeyboardManager.astro';
+import Footer from '@/components/sections/Footer.astro';
 
 const {name} = personalData;
 ---
@@ -12,18 +19,28 @@ const {name} = personalData;
 	<main>
 		<PersonalData />
 		<About />
-		
+		<Experience />
+		<Education />
+		<WorkCapacity />
+		<DeveloperCapacity />
+		<Footer />
 	</main>
 
-	<KeyboardManager />
+	<!-- <KeyboardManager /> -->
 </Layout>
 
 <style>
 
 	main {
-		padding: 3rem;
+		padding: 4rem;
 		margin: auto;
 		width: 100%;
+	}
+
+	@media (width <= 700px) {
+		main {
+			padding: 2rem;
+		}
 	}
 	
 </style>

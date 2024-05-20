@@ -1,0 +1,111 @@
+---
+import Section from "@/components/Section.astro";
+import World from "@/icons/World.astro";
+
+import {education} from "@cv";
+---
+
+<Section title="Datos Académicos">
+    <ul>
+        {
+            education.map(({institution, url, area, studyType, startDate, endDate}) => {
+                return (
+                    <li>
+                        <article>
+                            <header>
+                                <section>
+                                    <h3>{institution}</h3>
+                                    <h4>{studyType} / {area}</h4>
+                                </section>
+
+                                <time>{startDate} - {endDate}</time>
+                            </header>
+
+                            <footer class="print">
+                                {url}
+                            </footer>
+
+                            <footer class="notPrint">
+                                {
+                                    url && (
+                                        <a 
+                                            href={url}
+                                            title={`Visitar sitio en ${url}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <World />
+                                            <p>
+                                                Visitar sitio web del establecimiento
+                                            </p>
+                                        </a>
+                                    )
+                                }
+                            </footer>
+                        </article>
+                    </li>
+                )
+            })
+        }
+    </ul>
+</Section>
+
+<style>
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    article h4 {
+        color: #444;
+        font-weight: 600;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap-reverse;
+        gap: .6rem
+    }
+
+    time {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        color: #045669;
+        font-size: .85rem;
+        border: 1px solid #045669;
+        padding: .3rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: all .3s ease-in-out;
+    }
+
+    time:hover {
+        background-color: #045669;
+        color: #C0DFE6;
+        scale: 1.1;
+        cursor: pointer;
+    }
+
+    footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    footer a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    footer a, 
+    footer a p {
+        color: #045669;
+    }
+</style>

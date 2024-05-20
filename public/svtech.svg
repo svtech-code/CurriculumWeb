@@ -70,8 +70,5 @@
 
     <style>
         path {fill: #045669}
-        @media (prefers-color-scheme: dark) {
-            path {fill: #fff}
-        }
     </style>
 </svg>

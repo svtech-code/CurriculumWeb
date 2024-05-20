@@ -1,40 +1,53 @@
 ---
 import Section from "@/components/Section.astro";
 import {personalData} from "@cv";
-import World from "@/icons/World.astro";
+
 import Email from "@/icons/Email.astro";
 import Phone from "@/icons/Phone.astro";
 import GitHub from "@/icons/GitHub.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
+import Location from "@/icons/Location.astro";
+import Identification from "@/icons/Identification.astro";
 
-const {name, label, image, location, email, phone, socialNetwork} = personalData;
+const {name, label, RUT, image, location, email, phone, socialNetwork} = personalData;
 const {address, country} = location;
 
 const SOCIAL_ICONS = {GitHub, LinkedIn};
 
-// script para obtener enlace de linkedIn
-const linkedInfo = socialNetwork.find(({network}) => network === "LinkedIn");
-const linkedUrl = linkedInfo.url;
-
-// lista de enlaces para mostrar al imprimir
-const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
-
 ---
 
 <Section>
-    <div class="container">
-        <div class="mainInfo">
+    <header>
+        <div class="info">
             <h1>{name}</h1>
             <h2>{label}</h2>
+            
+            <section>
+                <span>
+                    <p>
+                        <Identification />
+                        {RUT}
+                    </p>
+    
+                    <p>
+                        <Location />
+                        {address}. {country}
+                    </p>
+                </span>
+    
+                <span class="print">
+                    <p>
+                        <Phone />
+                        {phone}
+                    </p>
+    
+                    <p>
+                        <Email />
+                        {email}
+                    </p>
+                </span>
+            </section>
 
-            <span>
-                <World />
-                {address}. {country}
-            </span>
-
-            <footer class="print">
-                {printInfo}
-            </footer>
 
             <footer class="notPrint">
                 {
@@ -84,32 +97,36 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
         <figure>
             <img src={image} alt="Logo empresa">
         </figure>
-    </div>
+    </heade>
 </Section>
 
 
 <style>
-    .container {
+    header {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        flex-wrap: wrap-reverse;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 2.1rem;
     }
 
     h2 {
         font-weight: 500;
         font-size: 1.1rem;
         text-wrap: balance;
+        color: #444;
     }
 
     figure {
-        width: 30%;
-        min-width: 180px;
+        width: 160px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     img {
@@ -118,13 +135,17 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
         width: 100%;
     }
 
-    span {
+    section {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+    }
+
+    span p {
         display: flex;
         align-items: center;
         gap: .25rem;
         font-size: .90rem;
-        letter-spacing: -.05rem;
-        margin-top: 2px;
     }
 
     footer {
@@ -152,6 +173,33 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(" / ");
         background-color: #045669;
         color: #C0DFE6;
         scale: 1.2;
+    }
+
+    @media (width <= 700px) {
+        header {
+            flex-direction: column-reverse;
+        }
+
+        .info {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        section {
+            justify-content: center;
+        }
+
+        span {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        footer {
+            justify-content: center;
+            gap: 2rem;
+        }
     }
 
 
