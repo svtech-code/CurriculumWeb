@@ -1,47 +1,10 @@
 ---
 import Section from "@/components/Section.astro";
-
-// icons frontEnd
-import HTML from "@/icons/Frontend/HTML.astro";
-import CSS from "@/icons/Frontend/CSS.astro";
-import JavaScript from "@/icons/Frontend/JavaScript.astro";
-import JQuery from "@/icons/Frontend/JQuery.astro";
-import ReactJS from "@/icons/Frontend/ReactJS.astro";
-import IconAstro from "@/icons/Frontend/IconAstro.astro";
-import NPM from "@/icons/Frontend/NPM.astro";
-import Boostrap from "@/icons/Frontend/Boostrap.astro";
-import TailwindCSS from "@/icons/Frontend/TailwindCSS.astro";
-
-// icons backEnd
-import PHP from "@/icons/Backend/PHP.astro";
-import Python from "@/icons/Backend/Python.astro";
-import MySQL from "@/icons/Backend/MySQL.astro";
-import PostgreSQL from "@/icons/Backend/PostgreSQL.astro";
-import JWT from "@/icons/Backend/JWT.astro";
-import Docker from "@/icons/Backend/Docker.astro";
-import Composer from "@/icons/Backend/Composer.astro";
-import Apache from "@/icons/Backend/Apache.astro";
-import ApiRest from "@/icons/Backend/ApiRest.astro";
-import VBA from "@/icons/Backend/VBA.astro";
-
-// icons others
-import WordPress from "@/icons/OtherSkills/WordPress.astro";
-import Git from "@/icons/OtherSkills/Git.astro";
-import GitHub from "@/icons/OtherSkills/GitHub.astro";
-import Figma from "@/icons/OtherSkills/Figma.astro";
-import Canvas from "@/icons/OtherSkills/Canvas.astro";
-import Notion from "@/icons/OtherSkills/Notion.astro";
-import AppSheet from "@/icons/OtherSkills/Appsheet.astro";
-import Office from "@/icons/OtherSkills/Office.astro";
-import Terminal from "@/icons/OtherSkills/Terminal.astro";
+import SkillCard from "@/components/SkillCard.astro";
 
 import {developerSkills} from "@cv";
 const {developmentTechnologies, otherTechnologies, summary} = developerSkills;
 const {frontend, backend} = developmentTechnologies;
-
-const ICON_FRONT = {HTML, CSS, JavaScript, JQuery, ReactJS, IconAstro, NPM, Boostrap, TailwindCSS};
-const ICON_BACK = {PHP, Python, MySQL, PostgreSQL, JWT, Docker, Composer, Apache, ApiRest, VBA};
-const ICON_OTHER = {WordPress, Git, GitHub, Figma, Canvas, Notion, AppSheet, Office, Terminal};
 ---
 
 
@@ -49,72 +12,20 @@ const ICON_OTHER = {WordPress, Git, GitHub, Figma, Canvas, Notion, AppSheet, Off
     <p>{summary}</p>
 
     <section>
-        <article>
-            <header>
-                <h3>FrontEnd</h3>                
-            </header>
-            <ul>
-                {
-                    frontend.map(({skill, icon}) => {
-                        const Icon = ICON_FRONT[icon];
+        <SkillCard 
+            title="FrontEnd" 
+            skills={frontend} 
+        />
 
-                        return (
-                            <li>
-                                <p>
-                                    {Icon && (<Icon />)}
-                                    {skill}
-                                </p>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </article>
+        <SkillCard 
+            title="BackEnd" 
+            skills={backend} 
+        />
 
-        <article>
-            <header>
-                <h3>BackEnd</h3>                
-            </header>
-            <ul>
-                {
-                    backend.map(({skill, icon}) => {
-                        const Icon = ICON_BACK[icon];
-
-                        return (
-                            <li>
-                                <p>
-                                    {Icon && (<Icon />)}
-                                    {skill}
-                                </p>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </article>
-        
-        <article>
-            <header>
-                <h3>Otros</h3>                
-            </header>
-            <ul>
-                {
-                    otherTechnologies.map(({skill, icon}) => {
-                        const Icon = ICON_OTHER[icon];
-
-                        return (
-                            <li>
-                                <p>
-                                    {Icon && (<Icon />)}
-                                    {skill}
-                                </p>
-                            </li>
-                        )
-                    })
-
-                }
-            </ul>
-        </article>
+        <SkillCard 
+            title="Otros" 
+            skills={otherTechnologies} 
+        />
     </section>
 </Section>
 
@@ -124,24 +35,6 @@ const ICON_OTHER = {WordPress, Git, GitHub, Figma, Canvas, Notion, AppSheet, Off
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    
-    article {
-        border: 1px solid #045669;
-        border-radius: 8px;
-        padding: 1rem;
-    }
-
-    header {
-        margin-bottom: .8rem;
-    }
-
-    li p {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: .6rem;
-        padding: .1rem;
     }
 
     @media print {

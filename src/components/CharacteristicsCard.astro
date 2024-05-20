@@ -1,0 +1,57 @@
+---
+import Check from '@/icons/Check.astro';
+
+interface Props {
+    title: string,
+    characteristics: any
+}
+
+const {title, characteristics} = Astro.props;
+---
+
+<article>
+    <header>
+        <h3>{title}</h3>
+    </header>
+
+    <ul>
+        {
+            characteristics.map((item: any) => (
+                <li>
+                    <p>
+                        <Check />
+                    </p>
+
+                    <p>
+                        {item}
+                    </p>
+                </li>
+            ))
+        }
+    </ul>
+</article>
+
+<style>
+    article {
+        border: 1px solid #045669;
+        border-radius: 8px;
+        padding: 1rem;
+        transition: all .3s ease-in-out;
+    }
+
+    article:hover {
+        background-color: #C0DFE6;
+        scale: 1.04;
+    }
+
+    header {
+        margin-bottom: .8rem;
+    }
+
+    li {
+        display: flex;
+        gap: .6rem;
+        padding: .1rem;
+    }
+</style>
+

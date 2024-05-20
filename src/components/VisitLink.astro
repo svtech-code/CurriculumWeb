@@ -1,0 +1,51 @@
+---
+import World from "@/icons/World.astro"
+
+interface Props {
+    url: string
+    place: string
+}
+
+const {url, place} = Astro.props;
+---
+<footer class="print">
+    {url}
+</footer>
+
+<footer class="notPrint">
+    {
+        url && (
+            <a 
+                href={url}
+                title=`Visitar sitio web en ${url}`
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <World />
+                <p>
+                    Visitar sitio web de la {place}
+                </p>
+            </a>
+        )
+    }
+</footer>
+
+<style>
+    footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    footer a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .4rem;
+    }
+
+    footer a, 
+    footer a p {
+        color: #045669;
+    }
+</style>

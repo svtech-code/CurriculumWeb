@@ -1,6 +1,6 @@
 ---
 import Section from "@/components/Section.astro";
-import World from "@/icons/World.astro";
+import VisitLink from "@/components/VisitLink.astro";
 
 import {work} from "@cv";
 ---
@@ -24,34 +24,14 @@ import {work} from "@cv";
 
                                 <time>{years}</time>
                             </header>
+                            
                             <main>
                                 <p>
                                     {summary.split('--').map(line => <>{line}<br/></>)}
                                 </p>
                             </main>
 
-                            <footer class="print">
-                                {url}
-                            </footer>
-
-                            <footer class="notPrint">
-                                {
-                                    url && (
-                                        <a 
-                                            href={url}
-                                            title={`Visitar sitio en ${url}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <World />
-                                            <p>
-                                                Visitar sitio web de la empresa
-                                            </p>
-                                            
-                                        </a>
-                                    )
-                                }
-                            </footer>
+                            <VisitLink url={url} place="empresa" />
                         </article>
                     </li>
                 )
@@ -71,11 +51,11 @@ import {work} from "@cv";
         color: #444;
         font-weight: 600;
     }
-
+    
     header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: flex-end;
         margin-bottom: .3rem;
         flex-wrap: wrap-reverse;
         gap: .6rem
@@ -100,27 +80,8 @@ import {work} from "@cv";
     }
 
     time:hover {
-        background-color: #045669;
-        color: #C0DFE6;
-        scale: 1.1;
+        background-color: #C0DFE6;
+        scale: 1.04;
         cursor: pointer;
-    }
-
-    footer {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    footer a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: .4rem;
-    }
-
-    footer a, 
-    footer a p {
-        color: #045669;
     }
 </style>

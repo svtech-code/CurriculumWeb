@@ -1,6 +1,6 @@
 ---
 import Section from "@/components/Section.astro";
-import Check from "@/icons/Check.astro";
+import CharacteristicsCard from "@/components/CharacteristicsCard.astro";
 
 import {profesionalSkill} from "@cv";
 const {technicalSkills, softSkills, summary } = profesionalSkill
@@ -10,45 +10,9 @@ const {technicalSkills, softSkills, summary } = profesionalSkill
     <p>{summary}</p>
 
     <section>
-        <article>
-            <header>
-                <h3>Habilidades destacadas</h3>
-            </header>
-            <ul>
-                {
-                    technicalSkills.map((item) => (
-                        <li>
-                            <p>
-                                <Check />
-                            </p>
-                            <p>
-                                {item}
-                            </p>
-                        </li>
-                    ))
-                }
-            </ul>
-        </article>
-
-        <article>
-            <header>
-                <h3>Aptitudes destacadas</h3>
-            </header>
-            <ul>
-                {
-                    softSkills.map((item) => (
-                        <li>
-                            <p>
-                                <Check />
-                            </p>
-                            <p>                            
-                                {item}
-                            </p>
-                        </li>
-                    ))
-                }
-            </ul>
-        </article>
+        <CharacteristicsCard title="Habilidades destacadas" characteristics={technicalSkills} />
+        
+        <CharacteristicsCard title="Aptitudes destacadas" characteristics={softSkills} />
     </section>
 
 </Section>
@@ -59,22 +23,6 @@ const {technicalSkills, softSkills, summary } = profesionalSkill
         display: grid;
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    article {
-        border: 1px solid #045669;
-        border-radius: 8px;
-        padding: 1rem;
-    }
-
-    header {
-        margin-bottom: .8rem;
-    }
-
-    li {
-        display: flex;
-        gap: .6rem;
-        padding: .1rem;
     }
 
     @media print {
