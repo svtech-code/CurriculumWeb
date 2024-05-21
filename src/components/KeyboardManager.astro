@@ -1,12 +1,11 @@
 ---
 import 'hotkeypad/reset.css'
 import 'hotkeypad/index.css'
-import Command from "@/icons/Command.astro";
 
 import {personalData} from "@cv";
 import PopUp from '@/icons/PopUp.astro';
 
-const {socialNetwork} = personalData;
+const {socialNetwork, pathCurriculum, name} = personalData;
 
 const SOCIAL_ICONS = {
     GitHub: `<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 50 50">
@@ -24,12 +23,14 @@ const socialInfo = socialNetwork.map(({network, url}) => {
     return {
         id: network,
         section: "social",
-        title: `Visita mi ${network}`,
+        title: `Visita ${network}`,
         url,
         icon,
         hotkey: `ctrl+${firstLetter}`,
     }
 })
+
+const documentInfo = {pathCurriculum, name};
 ---
 
 <footer id="footer__info" class="notPrint">
@@ -40,14 +41,16 @@ const socialInfo = socialNetwork.map(({network, url}) => {
     <PopUp />
 </dir>
 
-<div id="hotkeypad" data-placeholder="Buscar atajos de teclado..." data-info={JSON.stringify(socialInfo)}></div>
+<div id="hotkeypad" data-placeholder="Buscar atajos de teclado..." data-info={JSON.stringify(socialInfo)} data-document={JSON.stringify(documentInfo)}></div>
 
 <script>
     import HotKeyPad from "hotkeypad";
 
     const hotkeypad = new HotKeyPad();
     const info = hotkeypad.instance.getAttribute("data-info") ?? "[]";
+    const pdfDocument = hotkeypad.instance.getAttribute("data-document") ?? "[]";
     const parseInfo = JSON.parse(info);
+    const parseDocument = JSON.parse(pdfDocument);
 
     const data = parseInfo.map((item: any) => {
         return {
@@ -68,7 +71,7 @@ const socialInfo = socialNetwork.map(({network, url}) => {
             hotkey: "ctrl+P",
             section: "Acciones",
             handler: () => {
-                console.log("Imprimir Curriculum")
+                window.print();
             }
         },
         {
@@ -80,7 +83,13 @@ const socialInfo = socialNetwork.map(({network, url}) => {
             hotkey: "ctrl+D",
             section: "Acciones",
             handler: () => {
-                console.log("Descargar curriculum")
+                const pdfURL = `${parseDocument.pathCurriculum}`
+                const link = document.createElement('a');
+                link.href = pdfURL;
+                link.download = `Curriculum ${parseDocument.name}.pdf`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }
         },
         ...data
@@ -104,20 +113,40 @@ const socialInfo = socialNetwork.map(({network, url}) => {
 </script>
 
 <style>
-    #hotkeypad [data-section] {
-        color: red;
-    }
-
     #hotkeypad {
-        /* --hotkeypad-bg-kbd: #f9fafb;
-        --hotkeypad-bg-backdrop: #fff;
-        --hotkeypad-bg-container: #fff; */
         --hotkeypad-bg-item-hover: #C0DFE6;
-        /* --hotkeypad-border-container: #d1d5db;
-        --hotkeypad-border-container-hover: #9ca3af;
-        --hotkeypad-fg-muted: #4b5563;
-    } */
 
+        div[data-container] {
+            overflow: hidden;
+            border: 1px solid #C0DFE6;
+        }
+
+        footer {
+            background-color: #045669;
+            justify-content: space-between;
+            border-bottom: 8px;
+        }
+
+        footer p {
+            align-items: center;
+            color: #C0DFE6;
+        }
+
+        footer p kbd {
+            background-color: #C0DFE6;
+        }
+
+        div[data-section] h4 {
+            padding: .4rem 1.25rem;
+            color: #045669;
+        }
+
+        @media (max-width: 600px) {
+            footer {
+                justify-content: center;
+            }
+        }
+    }
 
     @keyframes fadeIn {
         from {
@@ -170,10 +199,6 @@ const socialInfo = socialNetwork.map(({network, url}) => {
 
     #footer__btn:hover {
         scale: 1.04;
-    }
-
-    #hotkeypad [data-section] h4 {
-        color:red !important;
     }
 
     @media (min-width: 601px) {

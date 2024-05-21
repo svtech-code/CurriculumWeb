@@ -8,6 +8,7 @@ import GitHub from "@/icons/GitHub.astro";
 import LinkedIn from "@/icons/LinkedIn.astro";
 import Location from "@/icons/Location.astro";
 import Identification from "@/icons/Identification.astro";
+import SvTech from "@/icons/SvTech.astro";
 
 const {name, label, RUT, image, location, email, phone, socialNetwork} = personalData;
 const {address, country} = location;
@@ -95,7 +96,7 @@ const SOCIAL_ICONS = {GitHub, LinkedIn};
         </div>
 
         <figure>
-            <img src={image} alt="Logo empresa">
+            <SvTech />
         </figure>
     </heade>
 </Section>
@@ -127,12 +128,6 @@ const SOCIAL_ICONS = {GitHub, LinkedIn};
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    img {
-        aspect-ratio: 1/1;
-        object-fit: cover;
-        width: 100%;
     }
 
     section {
