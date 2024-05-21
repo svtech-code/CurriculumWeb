@@ -27,4 +27,4 @@ pnpm-debug.log*
 cv.json
 
 # curriculum
-/PDF/Curriculum.pdf
+/public/PDF/
