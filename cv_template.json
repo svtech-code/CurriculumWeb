@@ -1,0 +1,111 @@
+{
+  "personalData": {
+    "name": "",
+    "label": "",
+    "image": "",
+    "RUT": "",
+    "email": "",
+    "phone": "",
+    "url": "",
+    "pathCurriculum": "",
+    "summary": "",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "",
+      "countryCode": "",
+      "country": ""
+    },
+    "socialNetwork": [
+      {
+        "network": "LinkedIn",
+        "userName": "",
+        "url": ""
+      },
+      {
+        "network": "GitHub",
+        "userName": "",
+        "url": ""
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "",
+      "position": "",
+      "url": "",
+      "startDate": "",
+      "endDate": null,
+      "summary": ""
+    }
+  ],
+  "education": [
+    {
+      "institution": "",
+      "url": "",
+      "area": "",
+      "studyType": "",
+      "startDate": "",
+      "endDate": "",
+      "key": ""
+    }
+  ],
+  "profesionalSkill": {
+    "technicalSkills": [],
+    "softSkills": [],
+    "summary": ""
+  },
+  "developerSkills": {
+    "developmentTechnologies": {
+      "frontend": [
+        {
+          "skill": "",
+          "icon": ""
+        }
+      ],
+      "backend": [
+        {
+          "skill": "",
+          "icon": ""
+        }
+      ]
+    },
+    "otherTechnologies": [
+      {
+        "skill": "",
+        "icon": ""
+      }
+    ],
+    "summary": ""
+  },
+  "languajes": [
+    {
+      "languaje": "",
+      "fluency": ""
+    }
+  ],
+  "references": [
+    {
+      "name": "",
+      "area": "",
+      "youtubeCanal": ""
+    },
+    {
+      "name": "",
+      "area": "",
+      "youtubeCanal": ""
+    }
+  ],
+  "project": [
+    {
+      "name": "",
+      "isActive": false,
+      "description": "",
+      "systemType": "",
+      "technologies": [
+        ""
+      ],
+      "url": null
+    }
+  ]
+}
