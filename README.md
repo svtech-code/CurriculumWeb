@@ -29,8 +29,8 @@ Para la información presente en el proyecto, se utiliza un JSON, con la informa
 
 <br>
 
-## 💻 Uso del resositorio
-Para utilizar este repositorio de manera funcional, debes considerar lo siguieten:
+## 💻 Uso del repositorio
+Para utilizar este repositorio de manera funcional, debes considerar lo siguiente:
 
 ### 1. Clona el repositorio
 ```
@@ -43,7 +43,7 @@ cd CurriculumWeb
 ```
 
 ### 3. Instala las dependencias
-- Yo utilizo *npm*
+- Yo utilizo **npm**
 ```
 npm run dev
 ```
@@ -64,7 +64,8 @@ Luego de inicializar, abre tu navegador e ingresa al [http://localhost:4321](htt
 
 
 ## ⚙️ Comandos
-Alguno de los comando más comunes para trabajar con el proyecto usando *npm*
+Alguno de los comandos más comunes para trabajar con el proyecto usando **npm**
+
 |     |Comando           | Acción                                        |
 | :-- | :--------------- | :-------------------------------------------- |
 | 📦  |install        | Instalación de las dependencias del proyecto |
