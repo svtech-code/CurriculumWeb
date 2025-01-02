@@ -54,7 +54,7 @@ npm run dev
 
 <br>
 
-### 4. Inicializa el proyecto
+### 5. Inicializa el proyecto
 ```
 npm run dev
 ```
